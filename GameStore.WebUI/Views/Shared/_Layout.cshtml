@@ -8,12 +8,40 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-<div class="navbar" role="navigation">
-    <a class="navbar-brand" href="#">GameStore - Магазин компьютерних ігор </a>
-</div>
+<nav class="navbar navbar-dark bg-dark mb-5">
+    <a class="navbar-brand" href="#">GameStore - Магазин компьютерных игор </a>
+    
+    <div class="navbar-text " style="right: 130px !important;
+                                      position: absolute;">
+        <b>Ваша корзина:</b>
+        3 игр,
+        5297 руб
+    </div>
+    
+    <a class="btn btn-secondary navbar-btn float-right" href="/Cart/Index?returnUrl=%2F">Заказать</a>
+   
+    
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            @Html.Action("Summary", "Cart")
+        </span>
+    </div>
+    
+</nav>
 <div class="row ">
     <div id="categories" class="col-3">
-        Сюда добавим контент позже
+        @Html.Action("Menu","Nav")
     </div>
     <div class="col-8">
         @RenderBody()

@@ -10,13 +10,22 @@
     <div class="card mb-3 bg-light p-3">
         <h3>
             <strong>@p.Name</strong>
-            <span class="badge badge-primary float-right">@p.Price.ToString("# руб")</span>
+            <span class="badge badge-primary float-right">@p.Price.ToString("# грн")</span>
         </h3>
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            <div class="float-right">
+                @Html.Hidden("GameId",p.GameId,new {@GameId = p.GameId})
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+            </div>
+        }
         <span class="lead">@p.Description</span>
     </div>
 }
 
 
-<div class="btn-group pull-right">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
-</div>
+<div class="btn-group float-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x,category = Model.CurrentCategory }))
+
+    </div>
